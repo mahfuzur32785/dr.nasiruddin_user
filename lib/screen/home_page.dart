@@ -1,3 +1,7 @@
+import 'package:doc_app/main_widget_pages/chember_info.dart';
+import 'package:doc_app/main_widget_pages/contact_info.dart';
+import 'package:doc_app/main_widget_pages/personal_info.dart';
+import 'package:doc_app/main_widget_pages/professional_info.dart';
 import 'package:doc_app/screen/create_appoinment.dart';
 import 'package:doc_app/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -161,19 +165,27 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisSpacing: 15,
                               ),
                               itemBuilder: (context, index) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.grey.shade200,
+                                return GestureDetector(
+                                  onTap: (){
+                                    index==3?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfessionalInfo())):
+                                    index==4?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PersonalInfo())):
+                                    index==5?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChemberInfo())):
+                                    index==6?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContactInfo())):Container();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Colors.grey.shade200,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Image(image: AssetImage("${servicesList[index]["image"]}"),height: 40,),
+                                        Text("${servicesList[index]["name"]}")
+                                      ],
+                                    )
                                   ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Image(image: AssetImage("${servicesList[index]["image"]}"),height: 40,),
-                                      Text("${servicesList[index]["name"]}")
-                                    ],
-                                  )
                                 );
                               },
                             itemCount: servicesList.length,
