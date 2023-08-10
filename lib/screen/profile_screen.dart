@@ -22,8 +22,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.topRight,
                 colors: [
-                  Colors.blue.shade50,
                   Colors.white70,
+                  Colors.blue.shade50,
                 ],
               )
           ),
@@ -34,12 +34,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Patients Profile',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w600),),
+                    const Text('Patients Profile',style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w600),),
                     CircleAvatar(
-                      backgroundColor: Colors.indigo,
+                      backgroundColor: Colors.white,
                       maxRadius: 16.0,
                       child:  IconButton(
-                        icon: const Icon(Icons.arrow_forward,size: 18,color: Colors.yellowAccent,),
+                        icon: const Icon(Icons.arrow_forward,size: 18,color: Colors.black,),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UpdatePatientProfile()));
                         },
@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 SizedBox(height: 20.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Patient Name',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -71,7 +71,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Age',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Sex',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -87,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Address',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -95,15 +95,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Date of Birth',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
-                    Text('07-03-2000'),
+                    Text('2000-03-07'),
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Nationality',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -111,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Religion',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Marital Status',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -127,17 +127,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Admission Date',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
                     //SizedBox(width: 10.0,),
-                    Text('08-08-2023'),
+                    Text('2023-08-10'),
                   ],
                 ),
                 SizedBox(height: 15.0,),
 
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Admission Time',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),
@@ -146,7 +146,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
                 SizedBox(height: 15.0,),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Final Diagnosis',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500),),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:doc_app/screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class UpdatePatientProfile extends StatefulWidget {
   const UpdatePatientProfile({super.key});
@@ -12,6 +13,21 @@ class UpdatePatientProfile extends StatefulWidget {
 }
 
 class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
+
+  String? firstPickedDate;
+
+  void _firstSelectedDate() async {
+    final selectedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2050));
+    if (selectedDate != null) {
+      setState(() {
+        firstPickedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +50,23 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                    child: Text('Update Patients Profile',style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w600),)),
-                Divider(thickness: 1.0,color: Colors.black12,),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      maxRadius: 16.0,
+                      child:  IconButton(
+                        icon: const Icon(Icons.arrow_back,size: 18,color: Colors.black,),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 50.0),
+                    Text('Update Patients Profile',style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w600),),
+                  ],
+                ),
+                const Divider(thickness: 1.0,color: Colors.black12,),
                 SizedBox(height: 10.0,),
                 Align(
                   alignment: Alignment.center,
@@ -113,19 +142,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Patient Name',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter patient name",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -141,19 +170,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Age',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter age",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -169,7 +198,7 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Sex',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
@@ -197,19 +226,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Address',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter address",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -223,26 +252,52 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 ),
                 SizedBox(height: 6.0,),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                        flex: 4,
-                        child: Text('Date of Birth',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
+                      flex: 4,
+                      child: Text(
+                        "Date of Birth",
+                        style:
+                        TextStyle(
+                            color: Colors.black,fontWeight: FontWeight.w500),
+                      ),
+                    ),
                     Expanded(
                       flex: 8,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
-                          style: TextStyle(fontSize: 14.0,color: Colors.black),
-                          // controller:
-                          // _phoneController, //ei controller e phone number debo then sa
-                          //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
-                            hintText: "Enter date of birth",
-                            hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            border: OutlineInputBorder(),
+                      child: Container(
+                        height: 35,
+                        child: GestureDetector(
+                          onTap: (() {
+                            _firstSelectedDate();
+                          }),
+                          child: TextFormField(
+                            enabled: false,
+                            decoration: InputDecoration(
+                              contentPadding:
+                              EdgeInsets.only(top: 10, left: 10),
+                              filled: true,
+                             // fillColor: Colors.blue[50],
+                              suffixIcon: Icon(
+                                Icons.calendar_month,
+                                color: Colors.black87,
+                                size: 18.0,
+                              ),
+                              border: OutlineInputBorder(
+                                 // borderSide: BorderSide.none
+                              ),
+                              hintText: firstPickedDate == null
+                                  ? DateFormat('yyyy-MM-dd')
+                                  .format(DateTime.now())
+                                  : firstPickedDate,
+                              hintStyle: TextStyle(
+                                  fontSize: 14, color: Colors.black,fontWeight: FontWeight.w400),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return null;
+                              }
+                              return null;
+                            },
                           ),
                         ),
                       ),
@@ -253,19 +308,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Nationality',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter nationality",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -281,19 +336,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Religion',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter religion",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -309,19 +364,19 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Marital Status',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     Expanded(
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter marital status",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -335,39 +390,63 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 ),
                 SizedBox(height: 6.0,),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                        flex: 4,
-                        child: Text('Admission Date ',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
-                    //SizedBox(width: 10.0,),
+                      flex: 4,
+                      child: Text(
+                        "Admission Date ",
+                        style:
+                        TextStyle(
+                            color: Colors.black,fontWeight: FontWeight.w500),
+                      ),
+                    ),
                     Expanded(
                       flex: 8,
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
-                          style: TextStyle(fontSize: 14.0,color: Colors.black),
-                          // controller:
-                          // _phoneController, //ei controller e phone number debo then sa
-                         // keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
-                            hintText: "Enter admission date",
-                            hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 10),
-                            border: OutlineInputBorder(),
+                      child: Container(
+                        height: 35,
+                        child: GestureDetector(
+                          onTap: (() {
+                            _firstSelectedDate();
+                          }),
+                          child: TextFormField(
+                            enabled: false,
+                            decoration: InputDecoration(
+                              contentPadding:
+                              EdgeInsets.only(top: 10, left: 10),
+                              filled: true,
+                              // fillColor: Colors.blue[50],
+                              suffixIcon: Icon(
+                                Icons.calendar_month,
+                                color: Colors.black87,
+                                size: 18.0,
+                              ),
+                              border: OutlineInputBorder(
+                                // borderSide: BorderSide.none
+                              ),
+                              hintText: firstPickedDate == null
+                                  ? DateFormat('yyyy-MM-dd')
+                                  .format(DateTime.now())
+                                  : firstPickedDate,
+                              hintStyle: TextStyle(
+                                  fontSize: 14, color: Colors.black,fontWeight: FontWeight.w400),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return null;
+                              }
+                              return null;
+                            },
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-
                 SizedBox(height: 6.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                         flex: 4,
                         child: Text('Admission Time',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     //SizedBox(width: 10.0,),
@@ -375,12 +454,12 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                          // keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Enter admission time",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -396,7 +475,7 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                       flex: 4,
                         child: Text('Final Diagnosis',style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w500),)),
                     //SizedBox(width: 10.0,),
@@ -404,12 +483,12 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                       flex: 8,
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height / 20-10,
-                        child: TextField(
+                        child: const TextField(
                           style: TextStyle(fontSize: 14.0,color: Colors.black),
                           // controller:
                           // _phoneController, //ei controller e phone number debo then sa
                           //keyboardType: TextInputType.phone,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             hintText: "Final Diagnosis",
                             hintStyle: TextStyle(color: Colors.grey,fontSize: 14.0,fontWeight: FontWeight.w400),
                             contentPadding: EdgeInsets.symmetric(
@@ -430,7 +509,7 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
                       backgroundColor: Colors.cyanAccent.shade700,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0))
                     ),
-                    child: Text('Update',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500,color: Colors.black),),
+                    child: const Text('Update',style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500,color: Colors.black),),
                     onPressed: (){
                       Navigator.of(context).pop();
                     },

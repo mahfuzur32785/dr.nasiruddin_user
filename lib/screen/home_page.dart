@@ -1,10 +1,14 @@
+import 'package:doc_app/main_widget_pages/archive_schedule.dart';
 import 'package:doc_app/main_widget_pages/chember_info.dart';
+import 'package:doc_app/main_widget_pages/confirm_schedule.dart';
 import 'package:doc_app/main_widget_pages/contact_info.dart';
+import 'package:doc_app/main_widget_pages/pending_schedule.dart';
 import 'package:doc_app/main_widget_pages/personal_info.dart';
 import 'package:doc_app/main_widget_pages/professional_info.dart';
 import 'package:doc_app/screen/create_appoinment.dart';
 import 'package:doc_app/utils/const.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -92,11 +96,13 @@ class _HomePageState extends State<HomePage> {
                         Expanded(child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Wellcome to!\nDr. Nasiruddin",style: TextStyle(
+                            Text("Welcome to!\nDr. Nasiruddin",style: GoogleFonts.roboto(
                               fontSize: 20,height: 0,fontWeight: FontWeight.w900,
                             ),),
                             const SizedBox(height: 10,),
-                            const Text("How is it going today?"),
+                        Text("How is it going today?",style: GoogleFonts.abhayaLibre(
+                              fontSize: 16,height: 0,fontWeight: FontWeight.w400,
+                            ),),
                             const SizedBox(height: 10,),
                             SizedBox(
                               // height: 40,
@@ -111,13 +117,14 @@ class _HomePageState extends State<HomePage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)
                                 ),
-                              ), child: const SizedBox(
+                              ), child:  SizedBox(
                                 child: Text(
                                   "Get Appointment",
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: GoogleFonts.roboto(
                                   fontSize: 14,color: Colors.white,
+                                    fontWeight: FontWeight.w900
                                 ),),
                               ),
                               ),
@@ -143,7 +150,15 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(20),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.topRight,
+                            colors: [
+                              Colors.blue.shade100,
+                              Colors.red.shade50,
+                            ],
+                          ),
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30),
@@ -160,31 +175,46 @@ class _HomePageState extends State<HomePage> {
                           Expanded(child: GridView.builder(
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
-                                mainAxisExtent: 100,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 15,
+                                mainAxisExtent: 105,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 5,
                               ),
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: (){
+                                    index==0?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PendingSchedule())):
+                                    index==1?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmSchedule())):
+                                    index==2?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ArchiveSchedule())):
                                     index==3?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfessionalInfo())):
                                     index==4?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PersonalInfo())):
                                     index==5?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChemberInfo())):
                                     index==6?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContactInfo())):Container();
                                   },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Colors.grey.shade200,
+                                  child: Card(
+                                    elevation: 5.0,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        //color: Colors.grey.shade200,
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.topRight,
+                                          colors: [
+                                            Colors.red.shade50,
+                                            Colors.blue.shade200,
+                                          ],
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Image(image: AssetImage("${servicesList[index]["image"]}"),height: 30,),
+                                          SizedBox(height: 10.0,),
+                                          Text("${servicesList[index]["name"]}",style: GoogleFonts.aboreto(fontSize: 10.0,fontWeight: FontWeight.w900),)
+                                        ],
+                                      )
                                     ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Image(image: AssetImage("${servicesList[index]["image"]}"),height: 40,),
-                                        Text("${servicesList[index]["name"]}")
-                                      ],
-                                    )
                                   ),
                                 );
                               },
