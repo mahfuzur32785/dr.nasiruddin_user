@@ -160,7 +160,7 @@ class _ChemberInfoState extends State<ChemberInfo> {
                       SizedBox(height: 20.0,),
                       const Text("Dental,Oral and Maxillofacial Surgery Specialist",style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500,color: Colors.pink),),
                       SizedBox(height: 15.0,),
-                      const Row(
+               Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
@@ -172,7 +172,10 @@ class _ChemberInfoState extends State<ChemberInfo> {
                               Text("Phone : +880-2-9140105\n01819-226460,01819-208670",style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w400),),
                               Text("4pm-7pm\n(Sunday,Wednesday,Thursday)",style: TextStyle(fontSize: 12.0,fontWeight: FontWeight.w400),),
                             ],),
-                          //SizedBox(width: 10.0,),
+                          Padding(
+                            padding:  EdgeInsets.only(top: 55.0),
+                            child: Container(height: 100.0,width: 1.0,color: Colors.grey,),
+                          ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

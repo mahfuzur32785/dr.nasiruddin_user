@@ -2,6 +2,7 @@ import 'package:doc_app/main_widget_pages/archive_schedule.dart';
 import 'package:doc_app/main_widget_pages/chember_info.dart';
 import 'package:doc_app/main_widget_pages/confirm_schedule.dart';
 import 'package:doc_app/main_widget_pages/contact_info.dart';
+import 'package:doc_app/main_widget_pages/message_to_doctor.dart';
 import 'package:doc_app/main_widget_pages/pending_schedule.dart';
 import 'package:doc_app/main_widget_pages/personal_info.dart';
 import 'package:doc_app/main_widget_pages/professional_info.dart';
@@ -188,7 +189,8 @@ class _HomePageState extends State<HomePage> {
                                     index==3?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfessionalInfo())):
                                     index==4?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PersonalInfo())):
                                     index==5?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChemberInfo())):
-                                    index==6?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContactInfo())):Container();
+                                    index==6?Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContactInfo())):
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MessageToDoctor()));
                                   },
                                   child: Card(
                                     elevation: 5.0,
