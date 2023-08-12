@@ -1,3 +1,4 @@
+import 'package:doc_app/drawer_section/drawer_menu.dart';
 import 'package:doc_app/main_widget_pages/archive_schedule.dart';
 import 'package:doc_app/main_widget_pages/chember_info.dart';
 import 'package:doc_app/main_widget_pages/confirm_schedule.dart';
@@ -6,6 +7,7 @@ import 'package:doc_app/main_widget_pages/message_to_doctor.dart';
 import 'package:doc_app/main_widget_pages/pending_schedule.dart';
 import 'package:doc_app/main_widget_pages/personal_info.dart';
 import 'package:doc_app/main_widget_pages/professional_info.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:doc_app/screen/create_appoinment.dart';
 import 'package:doc_app/utils/const.dart';
 import 'package:flutter/material.dart';
@@ -19,19 +21,54 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: CustomScrollView(
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 25,
+            )),
+        backgroundColor: Colors.indigoAccent.shade100,
+        title: Text(
+          "Atiqur Rahman Atiq",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+              },
+              child: Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+      drawer: DrawerDemoPage(
+        name: "",
+        phon: "",
+        photo: "",
+        addreess: "",
+      ),
+      body: CustomScrollView(
         slivers: [
-          // SliverAppBar(
-          //   actions: [
-          //     IconButton(onPressed: () {
-          //
-          //     }, icon: Icon(Icons.notifications_none_sharp)),
-          //   ]
-          // ),
-
           SliverToBoxAdapter(
             child: Container(
               height: MediaQuery.of(context).size.height,
