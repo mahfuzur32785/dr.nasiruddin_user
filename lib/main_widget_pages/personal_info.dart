@@ -1,3 +1,6 @@
+import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
+import 'package:doc_app/drawer_section/drawer_menu.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class PersonalInfo extends StatefulWidget {
@@ -13,51 +16,51 @@ class _PersonalInfoState extends State<PersonalInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      // appBar: AppBar(
-      //   leading: GestureDetector(
-      //       onTap: () {
-      //         scaffoldKey.currentState?.openDrawer();
-      //       },
-      //       child: Icon(
-      //         Icons.menu,
-      //         color: Colors.white,
-      //         size: 25,
-      //       )),
-      //   backgroundColor: Colors.deepPurple.shade900,
-      //   title: Text(
-      //     "Personal Information",
-      //     style: TextStyle(
-      //       color: Colors.white,
-      //       fontSize: 22,
-      //       fontWeight: FontWeight.w800,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   actions: [
-      //     GestureDetector(
-      //         onTap: () {
-      //           // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
-      //         },
-      //         child: Icon(
-      //           Icons.account_circle,
-      //           size: 25,
-      //           color: Colors.white,
-      //         )),
-      //     SizedBox(
-      //       width: 10.0,
-      //     )
-      //   ],
-      // ),
-      // drawer: DrawerDemoPage(
-      //   name: "",
-      //   phon: "",
-      //   photo: "",
-      //   addreess: "",
-      // ),
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 25,
+            )),
+        backgroundColor: Colors.indigoAccent.shade100,
+        title: Text(
+          "Personal Information",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+              },
+              child: Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+      drawer: DrawerDemoPage(
+        name: "",
+        phon: "",
+        photo: "",
+        addreess: "",
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: EdgeInsets.only(top: 24.0),
+        //padding: EdgeInsets.only(top: 24.0),
         decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -73,7 +76,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             children: [
               /// Top Row ICON
               Container(
-                color: const Color(0xffaec2e3),
+               // color: const Color(0xffaec2e3),
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -91,9 +94,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
                         ),
                       ),
                       //SizedBox(width: 10.0,),
-                      const Text("Personal Information",style: TextStyle(
-                        fontSize: 18,fontWeight: FontWeight.bold,
-                      ),),
+                      // const Text("Personal Information",style: TextStyle(
+                      //   fontSize: 18,fontWeight: FontWeight.bold,
+                      // ),),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 0),
                         child: Stack(
@@ -226,7 +229,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
               ),
             ]),
       ),
-     // bottomNavigationBar: CommonBtmNbBar(),
+      bottomNavigationBar: CommonBtmNbBar(),
     );
   }
 }

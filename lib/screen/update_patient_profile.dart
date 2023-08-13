@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
+import 'package:doc_app/drawer_section/drawer_menu.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:doc_app/screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,14 +31,57 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
       });
     }
   }
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 25,
+            )),
+        backgroundColor: Colors.indigoAccent.shade100,
+        title: Text(
+          "Update Patients Profile",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+              },
+              child: Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+      drawer: DrawerDemoPage(
+        name: "",
+        phon: "",
+        photo: "",
+        addreess: "",
+      ),
       body: SafeArea(
         child: Container(
           height: double.infinity,
           width: double.infinity,
-          padding: EdgeInsets.only(top: 25.0,left: 20.0,right: 20.0),
+          padding: EdgeInsets.only(top: 10.0,left: 15.0,right: 15.0),
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -50,24 +96,16 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      maxRadius: 16.0,
-                      child:  IconButton(
-                        icon: const Icon(Icons.arrow_back,size: 18,color: Colors.black,),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
-                    SizedBox(width: 50.0),
-                    Text('Update Patients Profile',style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w600),),
-                  ],
+                CircleAvatar(
+                  backgroundColor: Colors.white,
+                  maxRadius: 16.0,
+                  child:  IconButton(
+                    icon: const Icon(Icons.arrow_back,size: 18,color: Colors.black,),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-                const Divider(thickness: 1.0,color: Colors.black12,),
-                SizedBox(height: 10.0,),
                 Align(
                   alignment: Alignment.center,
                   child: SizedBox(
@@ -521,6 +559,7 @@ class _UpdatePatientProfileState extends State<UpdatePatientProfile> {
           ),
         ),
       ),
+      bottomNavigationBar: CommonBtmNbBar(),
     );
   }
   XFile? images;

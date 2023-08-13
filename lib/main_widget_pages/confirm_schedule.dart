@@ -1,3 +1,6 @@
+import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
+import 'package:doc_app/drawer_section/drawer_menu.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmSchedule extends StatefulWidget {
@@ -8,9 +11,52 @@ class ConfirmSchedule extends StatefulWidget {
 }
 
 class _ConfirmScheduleState extends State<ConfirmSchedule> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 25,
+            )),
+        backgroundColor: Colors.indigoAccent.shade100,
+        title: Text(
+          "Confirm Schedule",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+              },
+              child: Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+      drawer: DrawerDemoPage(
+        name: "",
+        phon: "",
+        photo: "",
+        addreess: "",
+      ),
       body: SafeArea(
         child: CustomScrollView(
           physics: const NeverScrollableScrollPhysics(),
@@ -32,7 +78,7 @@ class _ConfirmScheduleState extends State<ConfirmSchedule> {
                   children: [
                     /// Top Row ICON
                     Container(
-                      color: const Color(0xffaec2e3),
+                      //color: const Color(0xffaec2e3),
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -49,9 +95,7 @@ class _ConfirmScheduleState extends State<ConfirmSchedule> {
                                 },
                               ),
                             ),
-                            const Text("Confirm Schedule",style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.bold,
-                            ),),
+
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 0),
                               child: Stack(
@@ -88,12 +132,11 @@ class _ConfirmScheduleState extends State<ConfirmSchedule> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10,),
                     Expanded(
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           return Padding(
-                            padding: const EdgeInsets.only(bottom: 30,left: 10,right: 10),
+                            padding: const EdgeInsets.only(bottom:150,left: 10,right: 10),
                             child: ListView.separated(
                               itemBuilder: (context, index) {
                                 return Card(
@@ -190,6 +233,7 @@ class _ConfirmScheduleState extends State<ConfirmSchedule> {
           ],
         ),
       ),
+      bottomNavigationBar: CommonBtmNbBar(),
     );
   }
 }

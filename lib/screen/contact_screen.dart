@@ -1,15 +1,16 @@
 import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
 import 'package:doc_app/drawer_section/drawer_menu.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class ContactInfo extends StatefulWidget {
-  const ContactInfo({super.key});
+class ContactScreen extends StatefulWidget {
+  const ContactScreen({super.key});
 
   @override
-  State<ContactInfo> createState() => _ContactInfoState();
+  State<ContactScreen> createState() => _ContactScreenState();
 }
 
-class _ContactInfoState extends State<ContactInfo> {
+class _ContactScreenState extends State<ContactScreen> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -30,19 +31,19 @@ class _ContactInfoState extends State<ContactInfo> {
           "Contact Information",
           style: TextStyle(
             color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.w800,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
         ),
         centerTitle: true,
         actions: [
           GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
               },
               child: Icon(
                 Icons.account_circle,
-                size: 25,
+                size: 30,
                 color: Colors.white,
               )),
           SizedBox(
@@ -60,7 +61,7 @@ class _ContactInfoState extends State<ContactInfo> {
         // alignment: Alignment.center,
         height: double.infinity,
         width: double.infinity,
-       // padding: EdgeInsets.only(top: 24.0),
+        padding: EdgeInsets.only(top: 10.0,right: 10.0),
         decoration: BoxDecoration(
             color: Colors.white,
             gradient: LinearGradient(
@@ -76,31 +77,8 @@ class _ContactInfoState extends State<ContactInfo> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// Top Row ICON
-                Container(
-                 // color: const Color(0xffaec2e3),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          maxRadius: 16.0,
-                          child:  IconButton(
-                            icon: const Icon(Icons.arrow_back,size: 18,color: Colors.black,),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ),
-                        //SizedBox(width: 10.0,),
-                        // const Text("Contact Information",style: TextStyle(
-                        //   fontSize: 18,fontWeight: FontWeight.bold,
-                        // ),),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 0),
+                        Align(
+                          alignment: Alignment.topRight,
                           child: Stack(
                             children: [
                               Container(
@@ -130,11 +108,7 @@ class _ContactInfoState extends State<ContactInfo> {
                               )
                             ],
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                        ),
                 SizedBox(height: 30.0,),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),

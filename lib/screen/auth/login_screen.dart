@@ -1,5 +1,6 @@
 import 'package:doc_app/api/api_service.dart';
 import 'package:doc_app/screen/auth/reg_screen.dart';
+import 'package:doc_app/screen/home_page.dart';
 import 'package:doc_app/screen/main/main_screen.dart';
 import 'package:doc_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                 await ApiRequest().fetchUserLogin(phoneCtrl.text, passCtrl.text).then((value){
 
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen(),));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage(),));
                                   setState(() {
                                     isLoading = false;
                                   });

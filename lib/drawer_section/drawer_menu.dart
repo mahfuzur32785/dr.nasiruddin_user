@@ -27,7 +27,7 @@ class DrawerDemoPage extends StatelessWidget {
             //margin: EdgeInsets.only(top: 20),
             height: 110,
             width: double.infinity,
-            color: Colors.deepPurple.shade900,
+            color: Colors.indigoAccent.shade100,
             padding: EdgeInsets.only(left: 10.0,top: 15.0),
             child: Row(
               children: [

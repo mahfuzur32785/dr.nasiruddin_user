@@ -1,3 +1,6 @@
+import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
+import 'package:doc_app/drawer_section/drawer_menu.dart';
+import 'package:doc_app/screen/auth/login_screen.dart';
 import 'package:doc_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +12,53 @@ class MessageToDoctor extends StatefulWidget {
 }
 
 class _MessageToDoctorState extends State<MessageToDoctor> {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   final chatController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              scaffoldKey.currentState?.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: Colors.white,
+              size: 25,
+            )),
+        backgroundColor: Colors.indigoAccent.shade100,
+        title: Text(
+          "Message to Doctor",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+              },
+              child: Icon(
+                Icons.account_circle,
+                size: 30,
+                color: Colors.white,
+              )),
+          SizedBox(
+            width: 10.0,
+          )
+        ],
+      ),
+      drawer: DrawerDemoPage(
+        name: "",
+        phon: "",
+        photo: "",
+        addreess: "",
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -87,6 +133,7 @@ class _MessageToDoctorState extends State<MessageToDoctor> {
           onTap: (){},
         ),
       ),
+      //bottomNavigationBar: CommonBtmNbBar(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:doc_app/custom_btmnbar/common_btmnbar.dart';
 import 'package:doc_app/drawer_section/drawer_menu.dart';
 import 'package:doc_app/main_widget_pages/archive_schedule.dart';
 import 'package:doc_app/main_widget_pages/chember_info.dart';
@@ -211,6 +212,7 @@ class _HomePageState extends State<HomePage> {
                           // ),),
                           // const SizedBox(height: 10,),
                           Expanded(child: GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisExtent: 105,
@@ -250,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                                         children: [
                                           Image(image: AssetImage("${servicesList[index]["image"]}"),height: 30,),
                                           SizedBox(height: 10.0,),
-                                          Text("${servicesList[index]["name"]}",style: GoogleFonts.aboreto(fontSize: 10.0,fontWeight: FontWeight.w900),)
+                                          Text("${servicesList[index]["name"]}",style: GoogleFonts.roboto(fontSize: 14.0,fontWeight: FontWeight.w500),)
                                         ],
                                       )
                                     ),
@@ -271,6 +273,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      bottomSheet: CommonBtmNbBar(),
     );
   }
 }
